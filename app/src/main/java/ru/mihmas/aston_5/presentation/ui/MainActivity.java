@@ -1,11 +1,9 @@
-package ru.mihmas.aston_5;
+package ru.mihmas.aston_5.presentation.ui;
 
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-import ru.mihmas.aston_5.databinding.ActivityMainBinding;
+import ru.mihmas.aston_5.R;
 
 public class MainActivity extends AppCompatActivity {
 
