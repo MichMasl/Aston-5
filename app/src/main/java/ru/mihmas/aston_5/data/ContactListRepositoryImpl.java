@@ -27,36 +27,42 @@ public class ContactListRepositoryImpl implements ContactListRepository {
     private void listInit() {
         contactList.add(new Contact(
                 "Василий",
+                "Евграфович",
                 "Петров",
                 "223322223322",
                 0
         ));
         contactList.add(new Contact(
                 "Анатолий",
+                "Германович",
                 "Комар",
                 "39486739046",
                 1
         ));
         contactList.add(new Contact(
                 "Иван",
+                "Сулейман",
                 "Сидоров",
                 "88005553535",
                 2
         ));
         contactList.add(new Contact(
                 "Дарья",
+                "Лукинична",
                 "Иванова",
                 "123456789",
                 3
         ));
         contactList.add(new Contact(
                 "Ольга",
+                "Кондратьевна",
                 "Урожай",
                 "987654321",
                 4
         ));
         contactList.add(new Contact(
                 "Виктор",
+                "Робертович",
                 "Цой",
                 "768493012",
                 5

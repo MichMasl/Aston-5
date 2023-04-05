@@ -35,6 +35,13 @@ public class ContactListFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         setupRecyclerView(view);
         setupViewModel();
+        setupClickListener();
+    }
+
+    private void setupRecyclerView(View view) {
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
+        adapter = new MyAdapter();
+        recyclerView.setAdapter(adapter);
     }
 
     private void setupViewModel() {
@@ -42,10 +49,18 @@ public class ContactListFragment extends Fragment {
         viewModel.getContactList().observe(getViewLifecycleOwner(), list -> adapter.submitList(list));
     }
 
-    private void setupRecyclerView(View view) {
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        adapter = new MyAdapter();
-        recyclerView.setAdapter(adapter);
+    private void setupClickListener() {
+        adapter.setOnContactClickListener(position -> {
+            requireActivity().getSupportFragmentManager().popBackStack();
+            requireActivity().getSupportFragmentManager()
+                    .beginTransaction()
+                    .addToBackStack(null)
+                    .replace(
+                            R.id.fragment_container_view,
+                            ContactDetailFragment.newInstance(position)
+                    )
+                    .commit();
+        });
     }
 
     public static ContactListFragment newInstance() {
