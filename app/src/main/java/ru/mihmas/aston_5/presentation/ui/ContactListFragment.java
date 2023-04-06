@@ -1,5 +1,6 @@
 package ru.mihmas.aston_5.presentation.ui;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -52,15 +53,27 @@ public class ContactListFragment extends Fragment {
     private void setupClickListener() {
         adapter.setOnContactClickListener(position -> {
             viewModel.idOfClickedContact = position;
-            requireActivity().getSupportFragmentManager().popBackStack();
-            requireActivity().getSupportFragmentManager()
-                    .beginTransaction()
-                    .addToBackStack(null)
-                    .replace(
-                            R.id.fragment_container_view,
-                            ContactDetailFragment.newInstance(position)
-                    )
-                    .commit();
+            if (requireActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(
+                                R.id.fragment_container_view,
+                                ContactDetailFragment.newInstance(position)
+                        )
+                        .commit();
+            } else if (requireActivity().getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                requireActivity().getSupportFragmentManager().popBackStack();
+                requireActivity().getSupportFragmentManager()
+                        .beginTransaction()
+                        .addToBackStack(null)
+                        .replace(
+                                R.id.contact_detail_fragment_container_view,
+                                ContactDetailFragment.newInstance(position)
+                        )
+                        .commit();
+            }
         });
     }
 

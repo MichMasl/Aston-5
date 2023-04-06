@@ -1,5 +1,6 @@
 package ru.mihmas.aston_5.presentation.ui;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,7 @@ import ru.mihmas.aston_5.domain.model.Contact;
 import ru.mihmas.aston_5.presentation.viewmodel.MainViewModel;
 
 public class ContactDetailFragment extends Fragment {
+    private OnEditFinished onEditFinished;
     private static final String CONTACT_INFO = "Contact info";
     private MainViewModel viewModel;
     private EditText firstName;
@@ -25,6 +27,12 @@ public class ContactDetailFragment extends Fragment {
     private EditText secondName;
     private EditText phoneNumber;
     private Button saveButton;
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        onEditFinished = (OnEditFinished) context;
+    }
 
     @Nullable
     @Override
@@ -73,7 +81,12 @@ public class ContactDetailFragment extends Fragment {
                     newPhoneNumber
             );
             requireActivity().getSupportFragmentManager().popBackStack();
+            onEditFinished.onEditFinished();
         });
+    }
+
+    interface OnEditFinished {
+        void onEditFinished();
     }
 
     public static ContactDetailFragment newInstance(int contactId) {
