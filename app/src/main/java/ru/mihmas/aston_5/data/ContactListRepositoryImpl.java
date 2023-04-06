@@ -26,14 +26,6 @@ public class ContactListRepositoryImpl implements ContactListRepository {
     }
 
     @Override
-    public void addContact(Contact contact) {
-        if (contact.getId() == Contact.UNDEFINED_ID) {
-            contact.setId(autoId++);
-        }
-        contactList.add(contact);
-    }
-
-    @Override
     public void editContact(
             String newFirstName,
             String newMiddleName,
@@ -50,12 +42,6 @@ public class ContactListRepositoryImpl implements ContactListRepository {
             }
         }
         getContactList();
-    }
-
-    @Override
-    public void deleteContact(Contact contact) {
-        contactList.remove(contact.getId());
-        autoId--;
     }
 
     private void listInit() {
