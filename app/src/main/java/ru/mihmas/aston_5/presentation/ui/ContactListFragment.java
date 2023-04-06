@@ -51,6 +51,7 @@ public class ContactListFragment extends Fragment {
 
     private void setupClickListener() {
         adapter.setOnContactClickListener(position -> {
+            viewModel.idOfClickedContact = position;
             requireActivity().getSupportFragmentManager().popBackStack();
             requireActivity().getSupportFragmentManager()
                     .beginTransaction()

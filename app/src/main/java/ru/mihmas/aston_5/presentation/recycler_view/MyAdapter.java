@@ -5,10 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.ListAdapter;
-import java.util.List;
 
 import ru.mihmas.aston_5.R;
-import ru.mihmas.aston_5.domain.Contact;
+import ru.mihmas.aston_5.domain.model.Contact;
 
 public class MyAdapter extends ListAdapter<Contact, MyViewHolder> {
     private OnContactClickListener onContactClickListener;

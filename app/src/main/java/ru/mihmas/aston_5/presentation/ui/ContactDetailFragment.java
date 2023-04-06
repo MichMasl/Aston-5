@@ -4,6 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,15 +14,17 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import ru.mihmas.aston_5.R;
+import ru.mihmas.aston_5.domain.model.Contact;
 import ru.mihmas.aston_5.presentation.viewmodel.MainViewModel;
 
 public class ContactDetailFragment extends Fragment {
     private static final String CONTACT_INFO = "Contact info";
     private MainViewModel viewModel;
-    private TextView firstName;
-    private TextView middleName;
-    private TextView secondName;
-    private TextView phoneNumber;
+    private EditText firstName;
+    private EditText middleName;
+    private EditText secondName;
+    private EditText phoneNumber;
+    private Button saveButton;
 
     @Nullable
     @Override
@@ -46,6 +50,7 @@ public class ContactDetailFragment extends Fragment {
         middleName = view.findViewById(R.id.middle_name);
         secondName = view.findViewById(R.id.second_name);
         phoneNumber = view.findViewById(R.id.phone_number);
+        saveButton = view.findViewById(R.id.save_changes_button);
     }
 
     private void setupViews(int contactId) {
@@ -54,6 +59,20 @@ public class ContactDetailFragment extends Fragment {
             middleName.setText(contact.getMiddleName());
             secondName.setText(contact.getSecondName());
             phoneNumber.setText(contact.getPhoneNumber());
+        });
+        saveButton.setOnClickListener(click -> {
+            String newFirstName = firstName.getText().toString();
+            String newMiddleName = middleName.getText().toString();
+            String newSecondName = secondName.getText().toString();
+            String newPhoneNumber = phoneNumber.getText().toString();
+
+            viewModel.editContact(
+                    newFirstName,
+                    newMiddleName,
+                    newSecondName,
+                    newPhoneNumber
+            );
+            requireActivity().getSupportFragmentManager().popBackStack();
         });
     }
 

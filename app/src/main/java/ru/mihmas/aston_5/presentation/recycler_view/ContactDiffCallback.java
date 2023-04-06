@@ -3,7 +3,7 @@ package ru.mihmas.aston_5.presentation.recycler_view;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 
-import ru.mihmas.aston_5.domain.Contact;
+import ru.mihmas.aston_5.domain.model.Contact;
 
 public class ContactDiffCallback extends DiffUtil.ItemCallback<Contact> {
     @Override
